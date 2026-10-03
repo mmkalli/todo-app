@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { InlineScript } from "@/components/InlineScript";
+import { THEME_COLORS, themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,18 +23,20 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
+  themeColor: THEME_COLORS.light,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // The inline script sets data-theme before React hydrates.
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <InlineScript html={themeInitScript} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

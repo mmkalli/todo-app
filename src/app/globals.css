@@ -17,15 +17,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b0b0e;
-    --foreground: #ededf0;
-    --muted: #a1a1ab;
-    --card: #17171b;
-    --border: #2a2a31;
-    --subtle: #1f1f25;
-    color-scheme: dark;
+/* Dark mode is driven by data-theme on <html>, set by the inline script in
+   the root layout (saved choice, or the system setting by default). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+[data-theme="dark"] {
+  --background: #0b0b0e;
+  --foreground: #ededf0;
+  --muted: #a1a1ab;
+  --card: #17171b;
+  --border: #2a2a31;
+  --subtle: #1f1f25;
+  color-scheme: dark;
+}
+
+/* Smooth color change when toggling (skipped for users who prefer less motion). */
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    body,
+    .card {
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    }
   }
 }
 

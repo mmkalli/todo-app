@@ -1,4 +1,5 @@
 import { CheckIcon, LogoutIcon } from "@/components/icons";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { logout } from "@/lib/auth-actions";
 import { getDisplayName, requireUser } from "@/lib/supabase/server";
 
@@ -23,6 +24,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             {name.charAt(0)}
           </span>
           <span className="hidden max-w-56 truncate text-[0.9375rem] text-muted sm:block" title={user.email}>{name}</span>
+          <ThemeToggle />
           <form action={logout}>
             <button type="submit" className="btn-ghost" aria-label="Log out">
               <LogoutIcon className="size-5" />
