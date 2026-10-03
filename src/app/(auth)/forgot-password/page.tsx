@@ -8,8 +8,8 @@ export const metadata: Metadata = { title: "Forgot password" };
 export default function ForgotPasswordPage() {
   return (
     <>
-      <h1 className="mb-2 text-xl font-semibold">Reset your password</h1>
-      <p className="mb-6 text-sm text-muted">Enter your email and we&apos;ll send you a link to choose a new password.</p>
+      <h1 className="mb-2 text-2xl font-semibold tracking-tight">Reset your password</h1>
+      <p className="mb-6 text-muted">Enter your email and we&apos;ll send you a link to choose a new password.</p>
       <AuthForm
         action={requestPasswordReset}
         submitLabel="Send reset link"
@@ -17,7 +17,7 @@ export default function ForgotPasswordPage() {
         hideOnSuccess
         fields={[{ name: "email", label: "Email", type: "email", autoComplete: "email" }]}
       />
-      <p className="mt-6 text-center text-sm text-muted">
+      <p className="mt-6 text-center text-[0.9375rem] text-muted">
         <Link href="/login" className="link">Back to log in</Link>
       </p>
     </>

@@ -13,11 +13,7 @@ export function SubmitButton({
 }) {
   const { pending } = useFormStatus();
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className={`rounded-lg bg-indigo-600 px-4 py-2 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
-    >
+    <button type="submit" disabled={pending} className={`btn-primary ${className}`}>
       {pending ? (pendingText ?? "Please wait…") : children}
     </button>
   );

@@ -11,7 +11,7 @@ export default async function ResetPasswordPage() {
 
   return (
     <>
-      <h1 className="mb-6 text-xl font-semibold">Choose a new password</h1>
+      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Choose a new password</h1>
       <AuthForm
         action={updatePassword}
         submitLabel="Save password"

@@ -6,6 +6,7 @@ import { addTodo, deleteTodo, setCompleted, updateTodo } from "@/app/(app)/actio
 import { filterTodos, localToday, parseView, sortTodos, type Todo, type TodoInput, type View } from "@/lib/todos";
 import { AddTodoForm } from "./AddTodoForm";
 import { FilterTabs } from "./FilterTabs";
+import { CheckIcon, SearchIcon } from "./icons";
 import { TodoItem } from "./TodoItem";
 
 type Op =
@@ -66,32 +67,40 @@ export function TodoList({ todos }: { todos: Todo[] }) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 sm:gap-5">
       <AddTodoForm onAdd={handleAdd} defaultDue={view === "today" ? today : null} />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <FilterTabs current={view} counts={today ? counts : null} />
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search…"
-          aria-label="Search todos"
-          className="input sm:w-48"
-        />
+        <label className="relative block sm:w-60">
+          <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-muted" />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search todos"
+            aria-label="Search todos"
+            className="input w-full pl-11"
+          />
+        </label>
       </div>
 
       {error && (
-        <div role="alert" className="flex items-center justify-between gap-3 rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-200">
+        <div role="alert" className="flex items-center justify-between gap-3 rounded-xl bg-red-50 p-3 pl-4 text-[0.9375rem] text-red-700 dark:bg-red-950 dark:text-red-200">
           {error}
-          <button type="button" onClick={() => setError(null)} aria-label="Dismiss error" className="font-bold">×</button>
+          <button type="button" onClick={() => setError(null)} aria-label="Dismiss error" className="icon-btn !text-current">×</button>
         </div>
       )}
 
       {visible.length === 0 ? (
-        <p className="py-12 text-center text-muted">{query ? `No todos match "${query}".` : EMPTY_TEXT[view]}</p>
+        <div className="flex flex-col items-center gap-3 py-16 text-center">
+          <span className="grid size-14 place-items-center rounded-2xl bg-subtle text-muted">
+            <CheckIcon className="size-7" />
+          </span>
+          <p className="text-[1.0625rem] text-muted">{query ? `No todos match "${query}".` : EMPTY_TEXT[view]}</p>
+        </div>
       ) : (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2.5">
           {visible.map((todo) => (
             <TodoItem
               key={todo.id}

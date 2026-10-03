@@ -38,3 +38,10 @@ export const requireUser = cache(async () => {
   if (!user) redirect("/login");
   return { supabase, user };
 });
+
+/** The user's display name (or email). Cached per request. */
+export const getDisplayName = cache(async () => {
+  const { supabase, user } = await requireUser();
+  const { data } = await supabase.from("profiles").select("display_name").eq("id", user.id).maybeSingle();
+  return data?.display_name || user.email || "";
+});

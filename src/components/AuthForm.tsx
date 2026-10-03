@@ -30,13 +30,13 @@ export function AuthForm({
   const [state, formAction] = useActionState(action, { error: initialError });
 
   if (state.message && hideOnSuccess) {
-    return <p className="rounded-lg bg-emerald-50 p-4 text-sm text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">{state.message}</p>;
+    return <p className="rounded-xl bg-emerald-50 p-4 text-[0.9375rem] text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">{state.message}</p>;
   }
 
   return (
-    <form action={formAction} className="flex flex-col gap-4">
+    <form action={formAction} className="flex flex-col gap-5">
       {fields.map((f) => (
-        <label key={f.name} className="flex flex-col gap-1 text-sm font-medium">
+        <label key={f.name} className="flex flex-col gap-1.5 text-[0.9375rem] font-medium">
           {f.label}
           <input
             name={f.name}
@@ -49,12 +49,12 @@ export function AuthForm({
         </label>
       ))}
       {state.error && (
-        <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-200">
+        <p role="alert" className="rounded-xl bg-red-50 p-3 text-[0.9375rem] text-red-700 dark:bg-red-950 dark:text-red-200">
           {state.error}
         </p>
       )}
       {state.message && (
-        <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
+        <p className="rounded-xl bg-emerald-50 p-3 text-[0.9375rem] text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
           {state.message}
         </p>
       )}

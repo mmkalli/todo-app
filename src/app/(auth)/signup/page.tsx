@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Sign up" };
 export default function SignupPage() {
   return (
     <>
-      <h1 className="mb-6 text-xl font-semibold">Create your account</h1>
+      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Create your account</h1>
       <AuthForm
         action={signup}
         submitLabel="Sign up"
@@ -21,7 +21,7 @@ export default function SignupPage() {
           { name: "confirm", label: "Confirm password", type: "password", autoComplete: "new-password", minLength: 8 },
         ]}
       />
-      <p className="mt-6 text-center text-sm text-muted">
+      <p className="mt-6 text-center text-[0.9375rem] text-muted">
         Already have an account? <Link href="/login" className="link">Log in</Link>
       </p>
     </>

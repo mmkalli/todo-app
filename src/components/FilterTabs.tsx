@@ -11,7 +11,7 @@ const LABELS: Record<View, string> = { all: "All", today: "Today", upcoming: "Up
  */
 export function FilterTabs({ current, counts }: { current: View; counts: Record<View, number> | null }) {
   return (
-    <nav className="flex gap-1 overflow-x-auto rounded-xl bg-zinc-100 p-1 dark:bg-zinc-900" aria-label="Filter todos">
+    <nav className="grid grid-cols-4 gap-1 rounded-2xl bg-subtle p-1 sm:inline-grid" aria-label="Filter todos">
       {VIEWS.map((v) => {
         const active = v === current;
         const href = v === "all" ? "/" : `/?view=${v}`;
@@ -25,12 +25,20 @@ export function FilterTabs({ current, counts }: { current: View; counts: Record<
               if (!active) window.history.pushState(null, "", href);
             }}
             aria-current={active ? "page" : undefined}
-            className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-              active ? "bg-white text-indigo-600 shadow-sm dark:bg-zinc-800 dark:text-indigo-400" : "text-muted hover:text-current"
+            className={`flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-1 text-[0.9375rem] font-medium transition sm:px-4 ${
+              active ? "bg-[var(--card)] text-indigo-600 shadow-sm dark:text-indigo-400" : "text-muted hover:text-[var(--foreground)]"
             }`}
           >
             {LABELS[v]}
-            {counts && <span className="ml-1.5 text-xs opacity-60">{counts[v]}</span>}
+            {counts && (
+              <span
+                className={`hidden min-w-5 rounded-full px-1.5 text-center sm:inline-block text-xs font-semibold leading-5 ${
+                  active ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300" : "bg-[var(--border)] text-muted"
+                }`}
+              >
+                {counts[v]}
+              </span>
+            )}
           </a>
         );
       })}
