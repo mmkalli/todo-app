@@ -28,7 +28,7 @@ function reducer(todos: Todo[], op: Op): Todo[] {
 const noopSubscribe = () => () => {};
 
 const EMPTY_TEXT: Record<View, string> = {
-  all: "Nothing to do. Add your first todo above!",
+  all: "No todos yet. Add your first one above!",
   today: "Nothing due today. Enjoy your day!",
   upcoming: "No upcoming todos with a due date.",
   completed: "No completed todos yet.",

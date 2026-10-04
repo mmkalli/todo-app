@@ -95,7 +95,7 @@ export function filterTodos(todos: Todo[], view: View, today: string | null, que
       case "upcoming":
         return !t.completed && !!t.due_date && !!today && t.due_date > today;
       default:
-        return !t.completed;
+        return true; // "All" includes finished todos (sorted to the bottom)
     }
   });
 }
